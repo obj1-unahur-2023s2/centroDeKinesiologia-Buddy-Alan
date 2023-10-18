@@ -73,7 +73,7 @@ Se debe agregar a la información que maneja el programa, el color de cada apara
 Un buen valor inicial para el color de un aparato es el blanco.  
 Un cliente caprichoso, además, en cada sesión realiza siempre _dos veces_ toda la rutina que tiene asignada. 
 
-- **Rápida Recuperación**:  
+- **Rápida Recuperación**:  -Crear un objeto simple para estos casos-
 Luego de aplicar su rutina, el nivel de dolor se decrementa en una cantidad configurable, 
 que es la misma para todos los pacientes de rápida recuperación. Un buen valor inicial es 3.
 

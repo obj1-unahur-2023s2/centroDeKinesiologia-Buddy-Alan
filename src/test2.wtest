@@ -1,0 +1,77 @@
+import pacientes.*
+import aparatos.*
+import rutinas.*
+describe "Test 1" 
+	{
+		const rutinaDeLeandro = new Rutina()
+		const rutinaDeMilena = new Rutina()
+		const leandro = new Paciente( edad = 40, fortaleza = 20, dolor = 10, rutina = rutinaDeLeandro )
+		const milena = new Paciente( edad = 3 ,fortaleza = 50, dolor = 30, rutina = rutinaDeMilena )
+		const magneto = new Magneto()
+		const bicicleta = new Bicicleta()
+		const minitramp = new Minitramp()
+	
+	/*
+	 * 
+### Tests parte 2
+Considerar las dos personas definidas en los tests de la parte 1. La rutina de Leonardo es la indicada en el enunciado. 
+* Milena usa, primero un magneto, después una bicicleta. 
+
+Verificar que:
+- Leonardo puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 1.8, y su fortaleza sube a 30.
+- Milena no puede hacer la rutina que tiene asignada.
+	 */
+	method initialize()
+		{
+		rutinaDeLeandro.asignarAparatoARutina(magneto)
+		rutinaDeLeandro.asignarAparatoARutina(bicicleta)
+		rutinaDeLeandro.asignarAparatoARutina(minitramp)
+		rutinaDeMilena.asignarAparatoARutina(magneto)
+		rutinaDeMilena.asignarAparatoARutina(bicicleta)
+		}
+		
+	
+	
+	test "Pueden Usar Los Aparatos"
+		{
+			assert.that(leandro.pacientePuedeUsar(magneto))
+			assert.that(leandro.pacientePuedeUsar(bicicleta))
+			assert.that(leandro.pacientePuedeUsar(minitramp))
+			assert.that(milena.pacientePuedeUsar(magneto))
+			assert.notThat(milena.pacientePuedeUsar(bicicleta))
+			assert.notThat(milena.pacientePuedeUsar(minitramp))
+		} 
+	test "Leandro y Milena usan Magnetos"
+		{
+			leandro.usarAparato(magneto)
+			milena.usarAparato(magneto)
+			assert.equals(9,leandro.nivelDeDolor())
+			assert.equals(27,milena.nivelDeDolor())
+		}
+			test "Leandro usa solo biciletas"
+		{
+			leandro.usarAparato(bicicleta)
+			assert.equals(6,leandro.nivelDeDolor())
+			assert.equals(23,leandro.nivelDeFortaleza())
+		}
+			test "Leandro usa solo minitramp"
+		{
+			leandro.usarAparato(minitramp)
+			assert.equals(24,leandro.nivelDeFortaleza())
+		}
+
+ test "Comprobar Si pueden realizar la rutina"
+ 	{
+ 		assert.that(leandro.puedeRealizarLarutinaAsignada())
+ 		assert.notThat(milena.puedeRealizarLarutinaAsignada())
+ 	}
+  test "Leandor realiza su rutina"
+ 	{
+ 		leandro.realizarRutina()
+ 		assert.equals(27,leandro.nivelDeFortaleza())
+		assert.equals(1.8,leandro.nivelDeDolor())
+		assert.equals(30,leandro.nivelDeFortaleza())
+ 	}
+	}
+
+
